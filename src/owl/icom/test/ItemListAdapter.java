@@ -19,21 +19,21 @@ public class ItemListAdapter implements ListAdapter {
 
     private Context mContext;
     private JSONArray mData;
-    private ImageLoader mImageLoader = ImageLoader.getInstance();
-    private DisplayImageOptions mDisplayImageOptions;
-
+    
+    private static final ImageLoader mImageLoader = ImageLoader.getInstance();
+    private static final DisplayImageOptions mDisplayImageOptions = new DisplayImageOptions.Builder()
+        .cacheInMemory(false)
+        .cacheOnDisk(true)
+        .considerExifParams(true)
+        .bitmapConfig(Bitmap.Config.RGB_565)
+        .resetViewBeforeLoading(true)
+        .build();
+    
     public ItemListAdapter(Context context, JSONArray data) {
         super();
 
         mContext = context;
         mData = data;
-        mDisplayImageOptions = new DisplayImageOptions.Builder()
-            .cacheInMemory(false)
-            .cacheOnDisk(true)
-            .considerExifParams(true)
-            .bitmapConfig(Bitmap.Config.RGB_565)
-            .resetViewBeforeLoading(true)
-            .build();
     }
 
     @Override
